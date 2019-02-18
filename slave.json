@@ -1,0 +1,9 @@
+{
+  "redis": {
+      "master": "false",
+      "slave": "true",
+      "clustername": "mycluster",
+      "masternode_name": "redistrialM",
+      "clusternodes": ["redistrialM","redistrialS1","redistrialS2"]
+    }
+}
