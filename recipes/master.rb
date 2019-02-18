@@ -26,11 +26,12 @@ puts temp[0]['ipaddress']
 template "#{HOME}/redis.conf" do
   source "master.conf.erb"
   variables ({
-     "append" => node["redis"]["appendonly"]
+     "append" => node["redis"]["appendonly"],
+     "bind" => node["redis"]["bind"]  
 #     "ip" => "#{temp[0]['ipaddress']}"
    })
   action :create
- notifies :restart, 'service[redis]', :immediately
+ notifies :restart, 'service[redis]', :delayed
 end
 
 template "#{HOME}/redis-sentinel.conf" do
@@ -39,7 +40,7 @@ template "#{HOME}/redis-sentinel.conf" do
      "ip" => "#{temp[0]['ipaddress']}"
    })
   action :create
- notifies :restart, 'service[redis]', :immediately
+ notifies :restart, 'service[redis]', :delayed
 end
 
 execute "run sentinel" do

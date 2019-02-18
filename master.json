@@ -3,7 +3,7 @@
       "master": "true",
       "slave": "false",
       "clustername": "mycluster",
-      "masternode_name": "redistrialM",
-      "clusternodes": ["redistrialM","redistrialS1","redistrialS2"]
+      "masternode_name": "MasterR",
+      "clusternodes": ["Slave1R","Slave2R","MasterR"]
     }
 }

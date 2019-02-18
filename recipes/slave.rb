@@ -20,11 +20,12 @@ template "#{HOME}/redis.conf" do
   source "slave.conf.erb"
   variables ({
      "append" => node["redis"]["appendonly"],
+     "bind" => node["redis"]["bind"],
      "masterip" => "#{temp[0]['ipaddress']}",
      "masterport" => node["redis"]["masterport"]
    })
   action :create
-  notifies :restart, 'service[redis]', :immediately
+  notifies :restart, 'service[redis]', :delayed
 end
 
 template "#{HOME}/redis-sentinel.conf" do
@@ -35,7 +36,7 @@ template "#{HOME}/redis-sentinel.conf" do
      "masterport" => node["redis"]["masterport"]
    })
   action :create
- notifies :restart, 'service[redis]', :immediately
+ notifies :restart, 'service[redis]', :delayed
 end
 
 execute "run sentinel" do

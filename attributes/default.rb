@@ -1,5 +1,5 @@
 #master
-default["redis"]["local"]= "127.0.0.1"
+default["redis"]["bind"]= "0.0.0.0"
 #default["redis"]["ip"]= "172.31.17.182"
 #default["redis"]["master"]["bindport"]= "6379"
 default["redis"]["home"]= "/etc"
