@@ -9,11 +9,18 @@
 
 HOME = node["redis"]["home"]
 
-%w(epel-release redis).each do |pkg|
- package pkg do
-   action :install
- end
+rpm_package 'epel-release-latest-7.noarch.rpm' do
+    source 'http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+    action :install
 end
+
+#%w(redis).each do |pkg|
+# package pkg do
+#   action :install
+# end
+#end
+
+package "redis"
 
 file '/etc/sysctl.conf' do
   content 'vm.overcommit_memory = 1'

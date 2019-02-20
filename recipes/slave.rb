@@ -7,11 +7,19 @@
 
 HOME = node["redis"]["home"]
 
-%w(epel-release redis).each do |pkg|
- package pkg do
-   action :install
- end
+#%w(epel-release redis).each do |pkg|
+# package pkg do
+#   action :install
+# end
+#end
+#
+
+rpm_package 'epel-release-latest-7.noarch.rpm' do
+    source 'http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+    action :install
 end
+
+package "redis"
 
 temp = search(:node,"name:#{node['redis']['masternode_name']}")
 puts temp[0]['ipaddress']
